@@ -736,15 +736,7 @@ uint32_t crc32c_sb8_software(uint32_t crc, const uint8_t *buf, size_t length) {
 #endif
 
 uint32_t crc32c_sb8(uint32_t crc, const uint8_t *buf, size_t length) {
-#ifdef USE_X86_CRC32
-  if (likely(cached_cpu_supports_crc32)) {
-    return crc32c_hardware(crc, buf, length);
-  } else {
-    return crc32c_sb8_software(crc, buf, length);
-  }
-#else
   return crc32c_sb8_software(crc, buf, length);
-#endif
 }
 
 } // namespace NativeTask
